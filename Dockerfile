@@ -1,6 +1,6 @@
 FROM docker.io/library/ubuntu:noble
 
-ENV R_VERSION="4.5.2"
+ENV R_VERSION="4.5.0"
 ENV R_HOME="/usr/local/lib/R"
 ENV TZ="Etc/UTC"
 
@@ -24,7 +24,3 @@ RUN /rocker_scripts/install_quarto.sh
 RUN /rocker_scripts/install_geospatial.sh
 
 RUN /rocker_scripts/install_pridec.sh
-
-# WORKDIR /app
-# COPY entrypoint.R .
-# ENTRYPOINT ["Rscript", "/app/entrypoint.R"]

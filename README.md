@@ -5,8 +5,18 @@ A docker image similar to the rocker geospatial image but with several dependenc
 ## to build and publish
 
 ```
-docker build -t mvevans89/geolight .
-docker push mvevans89/geolight
+docker build -t mvevans89/geolight:VERSION.X.X .
+docker push mvevans89/geolight:VERSION.X.X
+```
+
+## to add version to github
+
+```
+git tag -a vX.X.X
+git push origin vX.X.X
+
+#or with gh
+gh release create vX.X.X --generate-notes
 ```
 
 ## to use
