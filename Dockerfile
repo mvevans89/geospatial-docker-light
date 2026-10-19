@@ -28,3 +28,5 @@ RUN /rocker_scripts/install_pridec.sh
 #update permissions on INLA binaries
 RUN chmod -R a+rX /usr/local/lib/R/site-library/INLA \
  && chmod a+x /usr/local/lib/R/site-library/INLA/bin/linux/64bit/*
+
+ LABEL version="1.0.0"
