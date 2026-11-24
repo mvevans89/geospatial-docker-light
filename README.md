@@ -4,19 +4,37 @@ A docker image similar to the rocker geospatial image but with several dependenc
 
 ## to build and publish
 
-```
-docker build -t mvevans89/geolight:VERSION.X.X .
-docker push mvevans89/geolight:VERSION.X.X
-```
+Set the version once and use it for the image label and both tags. Pushing `latest` too means `docker pull mvevans89/geolight` gets the new image.
 
-## to add version to github
+To see the version history (and ensure you bump appropriately):
 
 ```
-git tag -a vX.X.X
-git push origin vX.X.X
+curl -s "https://hub.docker.com/v2/repositories/mvevans89/geolight/tags?page_size=100&ordering=last_updated" \
+  | jq -r '.results[] | "\(.name)\t\(.last_updated)"'
+```
 
-#or with gh
-gh release create vX.X.X --generate-notes
+```
+VERSION=X.X.X
+docker build --build-arg VERSION=$VERSION \
+  -t mvevans89/geolight:$VERSION \
+  -t mvevans89/geolight:latest .
+docker push mvevans89/geolight:$VERSION
+docker push mvevans89/geolight:latest
+```
+
+Check the label on a built image:
+
+```
+docker inspect --format '{{ index .Config.Labels "version" }}' mvevans89/geolight:latest
+```
+
+## to add version to github 
+
+commit, push etc.
+
+```
+git push
+gh release create v$VERSION --generate-notes --title "v$VERSION"
 ```
 
 ## to use

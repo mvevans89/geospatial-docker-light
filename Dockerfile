@@ -29,4 +29,7 @@ RUN /rocker_scripts/install_pridec.sh
 RUN chmod -R a+rX /usr/local/lib/R/site-library/INLA \
  && chmod a+x /usr/local/lib/R/site-library/INLA/bin/linux/64bit/*
 
- LABEL version="1.0.0"
+#version is set at build time with --build-arg VERSION=X.X.X
+#declared last so changing it does not invalidate the build cache
+ARG VERSION=dev
+LABEL version="${VERSION}"
